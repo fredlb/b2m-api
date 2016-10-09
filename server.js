@@ -4,7 +4,7 @@ var fetch = require('node-fetch');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/get_trips', (req, res) => {
+app.get('/api/get_trips', (req, res) => {
     const config = {
       method: 'get',
       headers: {
