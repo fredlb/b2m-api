@@ -5,13 +5,15 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/get_trips', (req, res) => {
+    const originId = req.query.originId;
+    const destinationId = req.query.destinationId;
     const config = {
       method: 'get',
       headers: {
         'Accept': 'application/json'
       }
     };
-    fetch(`https://api.resrobot.se/v2/trip?key=${process.env.TRAFIKLAB_APIKEY}&originId=740021685&destId=740098556&products=32&format=json`, config)
+    fetch(`https://api.resrobot.se/v2/trip?key=${process.env.TRAFIKLAB_APIKEY}&originId=${originId}&destId=${destinationId}&products=32&format=json`, config)
       .then( response => {
         response.json().then( data => {
           const trips = data['Trip'].map( trip => {
